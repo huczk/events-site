@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1.title.event-title #{event.name}
+  h2.event-dateNow #{dateNow}
+  .event-details
+    h3.event-details-header Details:
+    p.event-details-item <b>When?</b>  - #{dateFormat}
+    p.event-details-item <b>Where?</b>  - #{event.address}
+    p.event-details-item <b>What?</b>  - #{event.description}
+    p.event-details-item <b>Author:</b> 
+      a.event-details-link(href='/user/'+event.author._id)
+       span #{event.author.name}
+    p.event-details-item <b>Guests:</b>
+    each item in event.guests
+      a.event-details-link(href='/user/'+item._id)
+        span #{item.name}#[br]
+        
+  form.join-form(action="/join/"+event.id method="POST")
+    input.join-button(type="submit" value=joinButton, data-tilt, data-tilt-scale="1.05")
+  .triangle-fourth

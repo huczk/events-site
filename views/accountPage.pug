@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .accountPage
+    h1.title Your account
+    .userInfo-logged
+      p User Name:
+      h3 #{user.name}
+      p E-mail Address:
+      h3 #{user.email}
+    .user-events
+      p Your Events:
+      if events
+        .events
+          each item in events
+            .content-event(data-tilt, data-tilt-scale="1.05")
+              a.event-link(href='events/'+item.slug)
+                span #{item.name}#[br]
+              .triangle-event

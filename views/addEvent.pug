@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1.title= "Add Event!"
+  form.addEvent-form(action="/add" method="POST")
+    p Event Name:#[br]
+      input.input-text(type="text" name="name" placeholder="")
+    p Date:#[br]
+      input.input-text(type="date" name="date" placeholder="")
+    p Description:#[br]
+      textarea.input-text(type="text" name="description" value="description" placeholder="")
+    p address:#[br]
+      input.input-text(type="text" name="address" placeholder="")
+    input.input-button(type="submit" value="Add Event!", data-tilt, data-tilt-scale="1.05")
+      
+  .triangle-third
+  .triangle-second

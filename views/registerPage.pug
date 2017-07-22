@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .triangle-second
+  h1.title= "Register"
+  form.register-form(action="/register" method="POST")
+    p User Name:#[br]
+      input.input-text(type="text" name="name" placeholder="")
+    p E-mail:#[br]
+      input.input-text(type="text" name="email" placeholder="")
+    p Password:#[br]
+      input.input-text(type="text" name="password" placeholder="")
+    p Confirm Password:#[br]
+      input.input-text(type="text" name="password-confirm" placeholder="")
+    input.input-button(type="submit" value="Register", data-tilt, data-tilt-scale="1.05")
+      
+  .triangle-third

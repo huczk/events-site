@@ -1,0 +1,62 @@
+doctype html
+html
+  head
+    title= "Meetup"
+    link(href="https://fonts.googleapis.com/css?family=Roboto:400,700,900", rel="stylesheet")
+    style(rel='stylesheet')
+      include ../dist/style.css
+    
+    //- link(rel="shortcut icon" type="image/png" href="/images/icons/doughnut.png")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+  body
+    block header
+      header.header
+        nav.nav
+          .nav-pages
+            li.nav-item
+              a.nav-link(href="/")
+                span Home
+            li.nav-item
+              a.nav-link(href="/events", class=(currentPath.startsWith('/events') ? 'nav-link-active' : ''))
+                span Events
+
+          .nav-user
+            if user
+              li.nav-item
+                a.nav-link(href="/add", class=(currentPath.startsWith('/add') ? 'nav-link-active' : ''))
+                  span Add Event
+              li.nav-item
+                a.nav-link(href="/account", class=(currentPath.startsWith('/account') ? 'nav-link-active' : ''))
+                  span Account
+              li.nav-item
+                a.nav-link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav-link-active' : ''))
+                  span Logout
+            else
+              li.nav-item
+                a.nav-link(href="/login", class=(currentPath.startsWith('/login') ? 'nav-link-active' : '')) Log In
+              li.nav-item
+                a.nav-link(href="/register", class=(currentPath.startsWith('/register') ? 'nav-link-active' : '')) Register
+
+    block messages
+      if locals.flashes
+        .inner-flashes
+          .flash-messages
+            - const categories = Object.keys(locals.flashes)
+            each category in categories
+              each message in flashes[category]
+                .flash(class=`flash-${category}`)
+                  p.flash-text!= message
+                  button.flash-remove(onClick="this.parentElement.remove()") &times;
+  
+    .content
+      block content
+        h1 Let's Meet!
+
+    .footer
+      block footer
+        p Made with 💙
+        p © Meetup Events
+        
+    //- script(src='dist/tilt.min.js')
+    script(rel='javascript')
+      include ../dist/tilt.min.js

@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  .userInfo
+    h1.title User
+    h2.userName #{someUser.name}
+  .user-events
+    p Events:
+    .events
+      each item in someUser.events
+        .content-event(data-tilt, data-tilt-scale="1.05")
+          a.event-link(href='/events/'+item.slug)
+            span #{item.name}
+          .triangle-event

@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .triangle-second
+  h1.title= "Login"
+  form.login-form(action="/login" method="POST")
+    p E-mail:#[br]
+      input.input-text(type="text" name="email" placeholder="")
+    p Password:#[br]
+      input.input-text(type="text" name="password" placeholder="")
+    input.input-button(type="submit" value="Login", data-tilt, data-tilt-scale="1.05")
+      
+  .triangle-third

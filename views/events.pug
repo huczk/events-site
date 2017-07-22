@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1.title Events
+  .events
+    each item in events
+      .content-event(data-tilt, data-tilt-scale="1.05")
+        a.event-link(href='events/'+item.slug)
+          span #{item.name}
+        .triangle-event
+  .triangle-fourth

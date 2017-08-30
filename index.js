@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 require('dotenv').config({ path: 'variables.env' });
 
 mongoose.Promise = global.Promise;
+// connect to mongo database
 mongoose.connect(process.env.DATABASE, { useMongoClient: true })
   .then(() => console.log('mongoose is working'));
 mongoose.connection.on('error', (err) => {

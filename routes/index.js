@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 const eventController = require('../controllers/eventController.js');
 const userController = require('../controllers/userController.js');
@@ -21,7 +22,7 @@ router.get('/register', userController.registerPage);
 router.post('/register',
   userController.validateRegister,
   errors.catchErrors(userController.register),
-  authController.login
+  authController.login,
 );
 
 router.get('/user/:name', errors.catchErrors(userController.getUser));

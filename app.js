@@ -9,10 +9,10 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const expressValidator = require('express-validator');
 const routes = require('./routes/index');
+const favicon = require('serve-favicon');
 const User = mongoose.model('User');
 
 passport.use(User.createStrategy());
-
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -21,7 +21,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -49,14 +49,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// pass routes object to express app
 app.use('/', routes);
 
+// not found address error
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
+// error handler
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error', {

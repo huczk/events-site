@@ -1,12 +1,13 @@
 const passport = require('passport');
 const mongoose = require('mongoose');
+
 const User = mongoose.model('User');
 
 exports.login = passport.authenticate('local', {
   failureRedirect: '/login',
   failureFlash: 'Failed Login!',
   successRedirect: '/',
-  successFlash: 'You are now logged in!'
+  successFlash: 'You are now logged in!',
 });
 
 exports.logout = (req, res) => {
@@ -15,6 +16,7 @@ exports.logout = (req, res) => {
   res.redirect('/');
 };
 
+// Check if user is logged for restrcted action
 exports.isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();

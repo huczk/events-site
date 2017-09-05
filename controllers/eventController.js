@@ -33,6 +33,7 @@ exports.createEvent = async (req, res) => {
     }
   });
 
+  req.flash('success', 'Successfully created an event');
   res.redirect('/events');
 };
 

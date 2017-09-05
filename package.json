@@ -9,7 +9,9 @@
   "scripts": {
     "start": "node ./index.js",
     "watch": "nodemon ./index.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "mocha --recursive",
+    "test-w": "nodemon --exec \"mocha --recursive\""
   },
   "author": "Hucz",
   "license": "ISC",
@@ -37,6 +39,8 @@
     "eslint": "^4.5.0",
     "eslint-config-airbnb-base": "^11.3.2",
     "eslint-plugin-import": "^2.7.0",
-    "nodemon": "^1.11.0"
+    "mocha": "^3.5.0",
+    "nodemon": "^1.11.0",
+    "supertest": "^3.0.0"
   }
 }

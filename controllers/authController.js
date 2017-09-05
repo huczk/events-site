@@ -16,7 +16,7 @@ exports.logout = (req, res) => {
   res.redirect('/');
 };
 
-// Check if user is logged for restrcted action
+// Check if user is logged for restricted action
 exports.isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();

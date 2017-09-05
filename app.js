@@ -8,8 +8,9 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const flash = require('connect-flash');
 const expressValidator = require('express-validator');
-const routes = require('./routes/index');
 const favicon = require('serve-favicon');
+const routes = require('./routes/index');
+
 const User = mongoose.model('User');
 
 passport.use(User.createStrategy());
@@ -34,7 +35,7 @@ app.use(session({
   key: process.env.KEY,
   resave: false,
   saveUninitialized: false,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
 }));
 
 app.use(passport.initialize());
@@ -64,8 +65,8 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: {}
+    error: {},
   });
-})
+});
 
 module.exports = app;
